@@ -1,0 +1,14 @@
+{
+  "name": "ExcelTemplate",
+  "columns": [
+  ],
+  "format": [
+    {
+      "columnName": "",
+      "colorFormat": {
+        "backgroundColor": ""
+      },
+      "valueFormat": ""
+    }
+  ]
+}
