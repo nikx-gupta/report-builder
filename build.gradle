@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'org.springdoc:springdoc-openapi-ui:1.4.4'
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb"
     compile group: 'org.apache.poi', name: 'poi', version: '3.9'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
     compileOnly 'org.projectlombok:lombok'
