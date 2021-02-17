@@ -9,10 +9,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication(scanBasePackages = "org.devignite.*")
 @EnableMongoRepositories(basePackages = "org.devignite.*")
-public class ExcelWriterApplication {
+public class ReportBuilderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ExcelWriterApplication.class, args);
+        SpringApplication.run(ReportBuilderApplication.class, args);
     }
 
     @Bean
