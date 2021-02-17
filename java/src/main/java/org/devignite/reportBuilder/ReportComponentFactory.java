@@ -3,7 +3,7 @@ package org.devignite.reportBuilder;
 import org.devignite.reportBuilder.builders.ExcelReportBuilder;
 import org.devignite.reportBuilder.builders.abstractions.IReportBuilder;
 import org.devignite.reportBuilder.dataProvider.DatasourceType;
-import org.devignite.reportBuilder.dataProvider.MongoDataSource;
+import org.devignite.reportBuilder.dataProvider.mongodb.MongoDataSource;
 import org.devignite.reportBuilder.dataProvider.abstractions.DataProviderSettings;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataSource;
 import org.devignite.reportBuilder.model.ReportMetadata;

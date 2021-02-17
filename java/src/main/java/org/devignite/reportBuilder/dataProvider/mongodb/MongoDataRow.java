@@ -1,4 +1,4 @@
-package org.devignite.reportBuilder.dataProvider;
+package org.devignite.reportBuilder.dataProvider.mongodb;
 
 import org.bson.Document;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataRow;

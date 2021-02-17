@@ -1,4 +1,4 @@
-package org.devignite.reportBuilder.dataProvider;
+package org.devignite.reportBuilder.dataProvider.mongodb;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

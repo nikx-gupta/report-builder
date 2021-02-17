@@ -1,4 +1,4 @@
-package org.devignite.excelwriter;
+package org.devignite.reportBuilder;
 
 import lombok.extern.slf4j.Slf4j;
 import org.devignite.reportBuilder.model.ReportMetadata;

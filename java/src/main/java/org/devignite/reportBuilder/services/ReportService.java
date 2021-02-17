@@ -5,15 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.devignite.reportBuilder.ReportBuilderConstants;
 import org.devignite.reportBuilder.ReportComponentFactory;
 import org.devignite.reportBuilder.dataProvider.DatasourceType;
-import org.devignite.reportBuilder.dataProvider.MongoDataProviderSettings;
+import org.devignite.reportBuilder.dataProvider.mongodb.MongoDataProviderSettings;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataSource;
 import org.devignite.reportBuilder.model.ReportMetadata;
 import org.devignite.reportBuilder.repository.ReportManifestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import java.beans.BeanProperty;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
