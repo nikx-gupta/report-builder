@@ -1,0 +1,29 @@
+{
+  "title": "mflix_movies",
+  "outputFormat": "xlsx",
+  "columns": [
+    {
+      "sourceFieldName": "title",
+      "outputName": "Title",
+      "columnStyle": {
+        "textColor": "",
+        "backgroundColor": "",
+        "fontName": ""
+      }
+    },
+    {
+      "sourceFieldName": "rated",
+      "outputName": "Rating",
+      "columnStyle": {
+        "textColor": "",
+        "backgroundColor": "",
+        "fontName": ""
+      }
+    }
+  ],
+  "headerStyle": {
+    "textColor": "",
+    "backgroundColor": "",
+    "fontName": ""
+  }
+}

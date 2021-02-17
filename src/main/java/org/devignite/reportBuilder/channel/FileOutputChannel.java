@@ -1,4 +1,4 @@
-package org.devignite.reportBuilder;
+package org.devignite.reportBuilder.channel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package org.devignite.reportBuilder;
+package org.devignite.reportBuilder.configuration;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
