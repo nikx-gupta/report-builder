@@ -1,7 +1,7 @@
 package org.devignite.reportBuilder.builders.abstractions;
 
-import org.devignite.reportBuilder.model.ReportMetadata;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataSet;
+import org.devignite.reportBuilder.model.ReportMetadata;
 
 import java.io.OutputStream;
 

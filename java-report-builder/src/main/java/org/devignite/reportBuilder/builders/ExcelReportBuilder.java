@@ -67,10 +67,6 @@ public class ExcelReportBuilder implements IReportBuilder {
         headerSet.forEach((fieldName, curColFormat) -> {
             if (curColFormat != null) {
                 Cell cell = row.createCell(colIndex.getAndIncrement());
-                if (curColFormat.getSourceFieldName().indexOf('.') >= 0) {
-
-                }
-
                 Object cellValue = dataRow.getCellValue(fieldName);
                 cell.setCellValue(cellValue != null ? cellValue.toString() : "");
                 applyCellStyle(cell, curColFormat.getColumnStyle());

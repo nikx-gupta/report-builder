@@ -16,7 +16,7 @@ public class ReportBuilderApplication {
     }
 
     @Bean
-    public OpenAPI customOpenAPI(){
+    public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info().title("Excel Writer").version("1.0"));
     }
 }

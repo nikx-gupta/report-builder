@@ -8,6 +8,7 @@ import java.io.OutputStream;
 public class FileOutputChannel extends OutputStream {
 
     FileOutputStream _currentStream;
+
     public FileOutputChannel(String fileName) throws FileNotFoundException {
         _currentStream = new FileOutputStream(fileName);
     }

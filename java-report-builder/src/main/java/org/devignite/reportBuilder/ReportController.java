@@ -6,8 +6,6 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.devignite.reportBuilder.ReportBuilderConstants;
-import org.devignite.reportBuilder.ReportComponentFactory;
 import org.devignite.reportBuilder.services.ReportResponse;
 import org.devignite.reportBuilder.services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.awt.Color;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 @RestController
 @RequestMapping("/api/report")
@@ -57,12 +58,12 @@ public class ReportController {
     }
 
     @GetMapping(value = "/movie")
-    public ResponseEntity generateMovieReport(@RequestParam String metadataTitle)  {
-       ReportResponse response = reportService.generateReport(metadataTitle);
+    public ResponseEntity generateMovieReport(@RequestParam String metadataTitle) {
+        ReportResponse response = reportService.generateReport(metadataTitle);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", ReportBuilderConstants.MIME_EXCEL);
         headers.setContentDisposition(ContentDisposition.attachment().filename(response.getFileName()).build());
-       return new ResponseEntity(response.getContent(), headers,HttpStatus.OK);
+        return new ResponseEntity(response.getContent(), headers, HttpStatus.OK);
     }
 
     @GetMapping(value = "/read")

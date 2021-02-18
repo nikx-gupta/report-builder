@@ -5,13 +5,18 @@ import org.devignite.reportBuilder.dataProvider.abstractions.IDataRow;
 import org.springframework.util.CollectionUtils;
 
 import javax.naming.OperationNotSupportedException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MongoDataRow implements IDataRow {
 
     private final Document _rowDoc;
+    private final Map<String, List<String>> _cacheNestedFields;
 
     public MongoDataRow(Document rowDoc) {
         _rowDoc = rowDoc;
+        _cacheNestedFields = new HashMap<>();
     }
 
     @Override
@@ -27,6 +32,10 @@ public class MongoDataRow implements IDataRow {
     @Override
     public Object getCellValue(String fieldName) {
         if (fieldName.indexOf(".") > 0) {
+            if (_cacheNestedFields.containsKey(fieldName)) {
+                return _rowDoc.getEmbedded(_cacheNestedFields.get(fieldName), "");
+            }
+
             String[] fieldSplit = fieldName.split("\\.");
             Object val = _rowDoc.getEmbedded(CollectionUtils.arrayToList(fieldSplit), "");
             return val;
