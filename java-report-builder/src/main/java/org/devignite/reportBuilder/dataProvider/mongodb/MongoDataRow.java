@@ -20,7 +20,7 @@ public class MongoDataRow implements IDataRow {
     }
 
     @Override
-    public int getColumnSize(Integer rowIndex) {
+    public int getColumnSize() {
         return _rowDoc.size();
     }
 

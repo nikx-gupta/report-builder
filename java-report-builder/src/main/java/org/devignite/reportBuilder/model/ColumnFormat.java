@@ -10,5 +10,6 @@ public class ColumnFormat {
     private String outputName;
     private Integer order;
     private StyleFormat columnStyle;
+    private String outputValueFormat;
 }
 

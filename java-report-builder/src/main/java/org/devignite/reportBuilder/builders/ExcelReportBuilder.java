@@ -45,7 +45,7 @@ public class ExcelReportBuilder implements IReportBuilder {
 
             _workbook.write(outputStream);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+
         }
     }
 
