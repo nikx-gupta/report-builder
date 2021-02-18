@@ -1,17 +1,22 @@
 package org.devignite.reportBuilder;
 
+import lombok.SneakyThrows;
 import org.devignite.reportBuilder.builders.ExcelReportBuilder;
 import org.devignite.reportBuilder.builders.abstractions.IReportBuilder;
 import org.devignite.reportBuilder.dataProvider.DatasourceType;
-import org.devignite.reportBuilder.dataProvider.mongodb.MongoDataSource;
 import org.devignite.reportBuilder.dataProvider.abstractions.DataProviderSettings;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataSource;
+import org.devignite.reportBuilder.dataProvider.mongodb.MongoDataSource;
 import org.devignite.reportBuilder.model.ReportMetadata;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Field;
 
 @Component
 public class ReportComponentFactory implements ApplicationContextAware {
@@ -24,6 +29,7 @@ public class ReportComponentFactory implements ApplicationContextAware {
         throw new InvalidPropertyException(ReportMetadata.class, "outputFormat", "Report format not supported");
     }
 
+    @SneakyThrows
     public IDataSource createDataProvider(DatasourceType datasourceType, DataProviderSettings settings) {
         switch (datasourceType) {
             case MONGO:

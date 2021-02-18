@@ -4,26 +4,20 @@
   "columns": [
     {
       "sourceFieldName": "title",
-      "outputName": "Title",
-      "columnStyle": {
-        "textColor": "",
-        "backgroundColor": "",
-        "fontName": ""
-      }
+      "outputName": "Title"
     },
     {
       "sourceFieldName": "rated",
-      "outputName": "Rating",
-      "columnStyle": {
-        "textColor": "",
-        "backgroundColor": "",
-        "fontName": ""
-      }
+      "outputName": "Rating"
+    },
+    {
+      "sourceFieldName": "awards.wins",
+      "outputName": "WinCount"
     }
   ],
   "headerStyle": {
     "textColor": "",
-    "backgroundColor": "",
+    "backgroundColor": "128,0,128",
     "fontName": ""
   }
 }
