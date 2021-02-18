@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.OutputStream;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -30,10 +31,10 @@ public class ExcelReportBuilder implements IReportBuilder {
 
     @Override
     public void generateReport(IDataSet dataSet, ReportMetadata reportMetadata, OutputStream outputStream) {
-        Map<String, ColumnFormat> headerSet = reportMetadata.getColumns().stream()
-                .collect(Collectors.toMap(x -> x.getSourceFieldName().isEmpty() || x.getSourceFieldName().isBlank() ? x.getOutputName() : x.getSourceFieldName(), x -> x, (ov, nv) -> nv, LinkedHashMap::new));
+        Map<String, ColumnFormat> headerSet =  getHeaderSet(reportMetadata);
 
-        initalizeWorkbook();
+        _workbook = new XSSFWorkbook();
+        _currentSheet = _workbook.createSheet("Sheet");
 
         try {
             writeHeader(headerSet, _currentSheet.createRow(0), reportMetadata.getHeaderStyle());
@@ -48,9 +49,31 @@ public class ExcelReportBuilder implements IReportBuilder {
         }
     }
 
-    private void initalizeWorkbook() {
+    @Override
+    public void generateMultiSheet(List<IDataSet> dataSet, ReportMetadata reportMetadata, OutputStream outputStream) {
+        Map<String, ColumnFormat> headerSet =  getHeaderSet(reportMetadata);
+
         _workbook = new XSSFWorkbook();
-        _currentSheet = _workbook.createSheet("Sheet");
+
+        try {
+            for (int dataSetIndex = 0; dataSetIndex < dataSet.size(); dataSetIndex++) {
+                _currentSheet = _workbook.createSheet("Sheet" + dataSetIndex);
+                writeHeader(headerSet, _currentSheet.createRow(0), reportMetadata.getHeaderStyle());
+                Integer rowCount = dataSet.get(dataSetIndex).getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+                    writeRow(dataSet.get(dataSetIndex).getRow(i), _currentSheet.createRow(i + 1), headerSet);
+                }
+            }
+
+            _workbook.write(outputStream);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private Map<String,ColumnFormat> getHeaderSet(ReportMetadata reportMetadata) {
+       return reportMetadata.getColumns().stream()
+                .collect(Collectors.toMap(x -> x.getSourceFieldName().isEmpty() || x.getSourceFieldName().isBlank() ? x.getOutputName() : x.getSourceFieldName(), x -> x, (ov, nv) -> nv, LinkedHashMap::new));
     }
 
     private void writeHeader(Map<String, ColumnFormat> headerSet, Row rowHeader, StyleFormat headerStyle) {

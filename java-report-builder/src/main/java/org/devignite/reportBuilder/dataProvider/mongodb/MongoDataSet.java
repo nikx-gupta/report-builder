@@ -5,6 +5,7 @@ import org.devignite.reportBuilder.dataProvider.abstractions.IDataRow;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataSet;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MongoDataSet implements IDataSet {
     private final List<Document> _data;
@@ -16,6 +17,11 @@ public class MongoDataSet implements IDataSet {
     @Override
     public int getRowCount() {
         return _data.size();
+    }
+
+    @Override
+    public void loadParallel(Consumer<? super IDataRow> action) {
+        _data.parallelStream().forEach(x -> action.accept(new MongoDataRow(x)));
     }
 
     @Override
