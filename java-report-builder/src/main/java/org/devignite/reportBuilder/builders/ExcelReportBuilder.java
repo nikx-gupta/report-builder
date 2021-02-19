@@ -31,7 +31,7 @@ public class ExcelReportBuilder implements IReportBuilder {
 
     @Override
     public void generateReport(IDataSet dataSet, ReportMetadata reportMetadata, OutputStream outputStream) {
-        Map<String, ColumnFormat> headerSet =  getHeaderSet(reportMetadata);
+        Map<String, ColumnFormat> headerSet = getHeaderSet(reportMetadata);
 
         _workbook = new XSSFWorkbook();
         _currentSheet = _workbook.createSheet("Sheet");
@@ -51,7 +51,7 @@ public class ExcelReportBuilder implements IReportBuilder {
 
     @Override
     public void generateMultiSheet(List<IDataSet> dataSet, ReportMetadata reportMetadata, OutputStream outputStream) {
-        Map<String, ColumnFormat> headerSet =  getHeaderSet(reportMetadata);
+        Map<String, ColumnFormat> headerSet = getHeaderSet(reportMetadata);
 
         _workbook = new XSSFWorkbook();
 
@@ -71,8 +71,8 @@ public class ExcelReportBuilder implements IReportBuilder {
         }
     }
 
-    private Map<String,ColumnFormat> getHeaderSet(ReportMetadata reportMetadata) {
-       return reportMetadata.getColumns().stream()
+    private Map<String, ColumnFormat> getHeaderSet(ReportMetadata reportMetadata) {
+        return reportMetadata.getColumns().stream()
                 .collect(Collectors.toMap(x -> x.getSourceFieldName().isEmpty() || x.getSourceFieldName().isBlank() ? x.getOutputName() : x.getSourceFieldName(), x -> x, (ov, nv) -> nv, LinkedHashMap::new));
     }
 

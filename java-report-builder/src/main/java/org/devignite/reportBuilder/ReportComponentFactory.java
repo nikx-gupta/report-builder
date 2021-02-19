@@ -1,8 +1,8 @@
 package org.devignite.reportBuilder;
 
 import lombok.SneakyThrows;
-import org.devignite.reportBuilder.builders.ExcelReportBuilder;
 import org.devignite.reportBuilder.builders.abstractions.IReportBuilder;
+import org.devignite.reportBuilder.builders.excel.ExcelUsingRawXmlBuilder;
 import org.devignite.reportBuilder.dataProvider.DatasourceType;
 import org.devignite.reportBuilder.dataProvider.abstractions.DataProviderSettings;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataSource;
@@ -20,7 +20,8 @@ public class ReportComponentFactory implements ApplicationContextAware {
 
     public IReportBuilder createReportBuilder(ReportMetadata manifest) {
         if (manifest.getOutputFormat().equalsIgnoreCase("xlsx"))
-            return ctx.getAutowireCapableBeanFactory().createBean(ExcelReportBuilder.class);
+//            return ctx.getAutowireCapableBeanFactory().createBean(ExcelReportBuilder.class);
+            return ctx.getAutowireCapableBeanFactory().createBean(ExcelUsingRawXmlBuilder.class);
 
         throw new InvalidPropertyException(ReportMetadata.class, "outputFormat", "Report format not supported");
     }
