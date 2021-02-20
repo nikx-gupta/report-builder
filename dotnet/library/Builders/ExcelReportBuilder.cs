@@ -18,12 +18,12 @@ namespace DevIgnite.ReportBuilderLibrary.Builders {
             var row = worksheet.Row(1);
             for (var i = 0; i < reportMetadata.Columns.Count; i++) row.Cell(i + 1).SetValue(reportMetadata.Columns[i].OutputName);
 
+            // Write Rows
             for (var rowIndex = 0; rowIndex < dataset.RowSize; rowIndex++) {
                 row = worksheet.Row(rowIndex + 2);
                 var dataRow = dataset.GetRow(rowIndex);
                 for (var cellIndex = 0; cellIndex < reportMetadata.Columns.Count; cellIndex++) {
                     var cellValue = dataRow.GetCellValue(reportMetadata.Columns[cellIndex].SourceFieldName);
-
                     WriteCellValue(row.Cell(cellIndex + 1), cellValue, reportMetadata.Columns[cellIndex].OutputValueFormat);
                 }
             }

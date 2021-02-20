@@ -4,20 +4,38 @@
   "columns": [
     {
       "sourceFieldName": "title",
-      "outputName": "Title"
+      "outputName": "Title",
+      "order": 0,
+      "columnStyle": null,
+      "outputValueFormat": null
     },
     {
       "sourceFieldName": "rated",
-      "outputName": "Rating"
+      "outputName": "Rating",
+      "order": 0,
+      "columnStyle": null,
+      "outputValueFormat": null
     },
     {
       "sourceFieldName": "awards.wins",
       "outputName": "WinCount",
+      "order": 0,
+      "columnStyle": null,
       "outputValueFormat": "DT:dd-MMM-yy"
     },
     {
       "sourceFieldName": "tomatoes.lastUpdated",
-      "outputName": "Lastupdated"
+      "outputName": "Lastupdated",
+      "order": 0,
+      "columnStyle": null,
+      "outputValueFormat": null
+    },
+    {
+      "sourceFieldName": "cities.city",
+      "outputName": "City",
+      "order": 0,
+      "columnStyle": null,
+      "outputValueFormat": null
     }
   ],
   "headerStyle": {

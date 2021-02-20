@@ -27,7 +27,11 @@ namespace DevIgnite.ReportBuilderLibrary {
                 reportBuilder.Generate(await datasource.Load(), reportMetadata, outputStream);
             }
 
-            return new ReportResponse(File.ReadAllBytes(outputFileName), ReportLibraryConstants.MIME[reportMetadata.OutputFormat], outputFileName);
+            ReportResponse response = new (File.ReadAllBytes(outputFileName), ReportLibraryConstants.MIME[reportMetadata.OutputFormat], outputFileName);
+            
+            File.Delete(outputFileName);
+
+            return response;
         }
     }
 }
