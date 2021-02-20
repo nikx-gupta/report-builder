@@ -84,7 +84,6 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
         Integer rowCount = dataSet.getRowCount();
         for (int i = 0; i < rowCount; i++) {
             IDataRow dataRow = dataSet.getRow(i);
-            logRow(dataRow, i);
             writer.insertRow(i + 1);
             AtomicInteger dataCellIndex = new AtomicInteger(0);
             headerSet.forEach((fieldName, curColFormat) -> {
@@ -105,7 +104,6 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
 
         if (cellValue instanceof Date) {
             formatDateValue(writer, cellIndex, (Date) cellValue, columnFormat.getOutputValueFormat());
-//            writer.createCell(cellIndex, (Date) cellValue, sheetStyles.get("date").getIndex());
         } else {
 
             writer.createCell(cellIndex, StringEscapeUtils.escapeXml11(cellValue.toString()));
@@ -135,20 +133,18 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
         }
     }
 
-
     /**
      * @param zipFile the excel template file
-     * @param tmpFile the XML file with the sheet data
+     * @param xmlSheetFile the XML file with the sheet data
      * @param entry   the name of the sheet entry to substitute, e.g. xl/worksheets/sheet1.xml
      * @param out     the stream to write the result to
      */
     @SneakyThrows
-    private void substitute(File zipFile, File tmpFile, String entry, OutputStream out) {
+    private void substitute(File zipFile, File xmlSheetFile, String entry, OutputStream out) {
         ZipFile zip = new ZipFile(zipFile);
-
         ZipOutputStream zos = new ZipOutputStream(out);
 
-//        @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")
         Enumeration<ZipEntry> en = (Enumeration<ZipEntry>) zip.entries();
         while (en.hasMoreElements()) {
             ZipEntry ze = en.nextElement();
@@ -160,14 +156,14 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
             }
         }
         zos.putNextEntry(new ZipEntry(entry));
-        InputStream is = new FileInputStream(tmpFile);
+        InputStream is = new FileInputStream(xmlSheetFile);
         copyStream(is, zos);
         is.close();
 
         zos.close();
         zip.close();
         zipFile.delete();
-        tmpFile.delete();
+        xmlSheetFile.delete();
     }
 
     private void copyStream(InputStream in, OutputStream out) throws IOException {
@@ -176,15 +172,6 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
         while ((count = in.read(chunk)) >= 0) {
             out.write(chunk, 0, count);
         }
-    }
-
-    private void logRow(IDataRow row, Integer rowIndex) {
-        StringBuilder builder = new StringBuilder();
-        row.foreach((x, y) -> {
-            builder.append(",");
-            builder.append(row.getCellValue(x));
-        });
-        log.info("Index: {}, Data: {}", rowIndex, builder.toString());
     }
 }
 
