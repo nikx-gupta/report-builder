@@ -25,7 +25,7 @@ public class MongoDataSource implements IDataSource {
         if (_settings == null)
             throw new NullPointerException("DataSource Settings not provided");
 
-        return new MongoDataSet(mongoTemplate.findAll(Document.class, _settings.getSourceCollectionName()).subList(0, 2));
+        return new MongoDataSet(mongoTemplate.findAll(Document.class, _settings.getSourceCollectionName()));
     }
 
     @Override

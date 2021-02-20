@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.devignite.reportBuilder.ReportBuilderConstants;
 import org.devignite.reportBuilder.ReportComponentFactory;
+import org.devignite.reportBuilder.builders.BuilderHelper;
 import org.devignite.reportBuilder.dataProvider.DatasourceType;
 import org.devignite.reportBuilder.dataProvider.abstractions.IDataSource;
 import org.devignite.reportBuilder.dataProvider.mongodb.MongoDataProviderSettings;
@@ -34,18 +35,14 @@ public class ReportService {
         settings.setSourceCollectionName("movies");
         IDataSource dataSource = componentFactory.createDataProvider(DatasourceType.MONGO, settings);
 
-        String fileName = "ReportData.xlsx";
+        String fileName = new BuilderHelper().getFileNameWithTimeStamp("ReportData", "xlsx");
         File outputFile = new File(fileName);
         outputFile.createNewFile();
-        FileOutputStream outputStream = null;
-        try {
-            outputStream = new FileOutputStream(outputFile);
+        try (FileOutputStream outputStream = new FileOutputStream(outputFile)) {
             componentFactory.createReportBuilder(reportMetadata)
                     .generateReport(dataSource.loadData(), reportMetadata, outputStream);
         } catch (Exception ex) {
             log.error(ex.getMessage());
-        } finally {
-            outputStream.close();
         }
 
         ReportResponse reportResponse = new ReportResponse();
@@ -53,7 +50,7 @@ public class ReportService {
         reportResponse.setMimeType(ReportBuilderConstants.MIME_EXCEL);
         reportResponse.setFileName(fileName);
 
-//        outputFile.delete();
+        outputFile.delete();
 
         return reportResponse;
     }

@@ -12,7 +12,12 @@
     },
     {
       "sourceFieldName": "awards.wins",
-      "outputName": "WinCount"
+      "outputName": "WinCount",
+      "outputValueFormat": "DT:dd-MMM-yy"
+    },
+    {
+      "sourceFieldName": "tomatoes.lastUpdated",
+      "outputName": "Lastupdated"
     }
   ],
   "headerStyle": {

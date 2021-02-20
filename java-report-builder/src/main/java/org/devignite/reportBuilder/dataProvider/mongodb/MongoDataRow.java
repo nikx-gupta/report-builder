@@ -8,6 +8,7 @@ import javax.naming.OperationNotSupportedException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class MongoDataRow implements IDataRow {
 
@@ -42,5 +43,10 @@ public class MongoDataRow implements IDataRow {
         }
 
         return _rowDoc.get(fieldName);
+    }
+
+    @Override
+    public void foreach(BiConsumer<String, Object> action) {
+        _rowDoc.forEach((x, y) -> action.accept(x, y));
     }
 }
