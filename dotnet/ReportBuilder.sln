@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIgnite.ReportBuilder", "Api\DevIgnite.ReportBuilder.csproj", "{13DF80B9-61F6-4C2E-918B-E00797EF2200}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIgnite.ReportBuilderLibrary", "library\DevIgnite.ReportBuilderLibrary.csproj", "{323EC04A-8383-4EEF-80E8-7F53E8DF208C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{13DF80B9-61F6-4C2E-918B-E00797EF2200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13DF80B9-61F6-4C2E-918B-E00797EF2200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13DF80B9-61F6-4C2E-918B-E00797EF2200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{323EC04A-8383-4EEF-80E8-7F53E8DF208C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{323EC04A-8383-4EEF-80E8-7F53E8DF208C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{323EC04A-8383-4EEF-80E8-7F53E8DF208C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{323EC04A-8383-4EEF-80E8-7F53E8DF208C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
