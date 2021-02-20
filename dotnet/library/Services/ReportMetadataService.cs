@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using DevIgnite.ReportBuilderLibrary.Configuration;
 using DevIgnite.ReportBuilderLibrary.Model;
-using DevIgnite.Services.Core.Exceptions;
 using MongoDB.Driver;
 
 namespace DevIgnite.ReportBuilderLibrary {
@@ -13,7 +12,7 @@ namespace DevIgnite.ReportBuilderLibrary {
     }
 
     public class ReportMetadataService : IReportMetadataService {
-        private IMongoCollection<ReportMetadata> _reportCollection;
+        private readonly IMongoCollection<ReportMetadata> _reportCollection;
 
         public ReportMetadataService(MongoClient mongoClient, ReportMetadataConfiguration metadataConfiguration) {
             _reportCollection = mongoClient.GetDatabase(metadataConfiguration.MongoDb).GetCollection<ReportMetadata>(nameof(ReportMetadata));

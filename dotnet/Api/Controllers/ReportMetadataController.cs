@@ -2,8 +2,6 @@
 using DevIgnite.ReportBuilderLibrary;
 using DevIgnite.ReportBuilderLibrary.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Serilog;
 
 namespace DevIgnite.ReportBuilder.Controllers {
     [ApiController]
@@ -19,7 +17,7 @@ namespace DevIgnite.ReportBuilder.Controllers {
         public async Task<ReportMetadata> get(string title) {
             return await _reportMetadataService.Get(title);
         }
-        
+
         [HttpPut]
         public async Task<ReportMetadata> put(ReportMetadata reportMetadata) {
             return await _reportMetadataService.Put(reportMetadata);

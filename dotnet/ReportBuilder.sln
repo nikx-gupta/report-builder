@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIgnite.ReportBuilder", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIgnite.ReportBuilderLibrary", "library\DevIgnite.ReportBuilderLibrary.csproj", "{323EC04A-8383-4EEF-80E8-7F53E8DF208C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIgnite.Apache.Excel.Port", "DevIgnite.Apache.Excel.Port\DevIgnite.Apache.Excel.Port.csproj", "{A35C93F6-0C01-4FA1-89CA-4497EBB9B698}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{4C67C5BE-1F32-4E9E-AC25-CE1657BE6C2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{323EC04A-8383-4EEF-80E8-7F53E8DF208C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{323EC04A-8383-4EEF-80E8-7F53E8DF208C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{323EC04A-8383-4EEF-80E8-7F53E8DF208C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A35C93F6-0C01-4FA1-89CA-4497EBB9B698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35C93F6-0C01-4FA1-89CA-4497EBB9B698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35C93F6-0C01-4FA1-89CA-4497EBB9B698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35C93F6-0C01-4FA1-89CA-4497EBB9B698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C67C5BE-1F32-4E9E-AC25-CE1657BE6C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C67C5BE-1F32-4E9E-AC25-CE1657BE6C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C67C5BE-1F32-4E9E-AC25-CE1657BE6C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C67C5BE-1F32-4E9E-AC25-CE1657BE6C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

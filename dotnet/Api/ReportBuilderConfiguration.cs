@@ -1,5 +1,4 @@
-﻿using Autofac;
-using DevIgnite.ReportBuilderLibrary;
+﻿using DevIgnite.ReportBuilderLibrary;
 using DevIgnite.ReportBuilderLibrary.Configuration;
 using DevIgnite.Services.Core.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,9 +9,11 @@ namespace DevIgnite.ReportBuilder {
         protected override void InjectServices() {
             _services.AddSingleton(_configuration.GetSettings<MongoConfiguration>());
             _services.AddSingleton(_configuration.GetSettings<ReportMetadataConfiguration>());
-            _services.AddScoped<MongoClient>(sp => new MongoClient(sp.GetService<MongoConfiguration>().ConnectionString));
+            _services.AddScoped(sp => new MongoClient(sp.GetService<MongoConfiguration>().ConnectionString));
 
             _services.AddScoped<IReportMetadataService, ReportMetadataService>();
+            _services.AddScoped<ReportService>();
+            _services.AddScoped<ReportBuilderFactory>();
         }
     }
 }
