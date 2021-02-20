@@ -11,6 +11,9 @@ namespace DevIgnite.ReportBuilderLibrary.DataProvider {
         }
 
         public int RowSize => _data.Count;
-        public IDataRow GetRow(int rowIndex) => new MongoDataRow(_data[rowIndex]);
+
+        public IDataRow GetRow(int rowIndex) {
+            return new MongoDataRow(_data[rowIndex]);
+        }
     }
 }

@@ -3,7 +3,6 @@ using System.IO;
 using ClosedXML.Excel;
 using DevIgnite.ReportBuilderLibrary.DataProvider.Abstractions;
 using DevIgnite.ReportBuilderLibrary.Model;
-using MongoDB.Driver;
 
 namespace DevIgnite.ReportBuilderLibrary.Builders {
     public interface IReportBuilder {
@@ -17,15 +16,13 @@ namespace DevIgnite.ReportBuilderLibrary.Builders {
 
             // Write Header
             var row = worksheet.Row(1);
-            for (int i = 0; i < reportMetadata.Columns.Count; i++) {
-                row.Cell(i + 1).SetValue(reportMetadata.Columns[i].OutputName);
-            }
+            for (var i = 0; i < reportMetadata.Columns.Count; i++) row.Cell(i + 1).SetValue(reportMetadata.Columns[i].OutputName);
 
-            for (int rowIndex = 0; rowIndex < dataset.RowSize; rowIndex++) {
+            for (var rowIndex = 0; rowIndex < dataset.RowSize; rowIndex++) {
                 row = worksheet.Row(rowIndex + 2);
-                IDataRow dataRow = dataset.GetRow(rowIndex);
-                for (int cellIndex = 0; cellIndex < reportMetadata.Columns.Count; cellIndex++) {
-                    Object cellValue = dataRow.GetCellValue(reportMetadata.Columns[cellIndex].SourceFieldName);
+                var dataRow = dataset.GetRow(rowIndex);
+                for (var cellIndex = 0; cellIndex < reportMetadata.Columns.Count; cellIndex++) {
+                    var cellValue = dataRow.GetCellValue(reportMetadata.Columns[cellIndex].SourceFieldName);
 
                     WriteCellValue(row.Cell(cellIndex + 1), cellValue, reportMetadata.Columns[cellIndex].OutputValueFormat);
                 }
@@ -34,21 +31,19 @@ namespace DevIgnite.ReportBuilderLibrary.Builders {
             workbook.SaveAs(outputStream);
         }
 
-        private void WriteCellValue(IXLCell cell, Object cellValue, string outputValueFormat) {
+        private void WriteCellValue(IXLCell cell, object cellValue, string outputValueFormat) {
             if (cellValue == null) {
                 cell.SetValue("");
                 return;
             }
 
-            if (cellValue is DateTime dt) {
+            if (cellValue is DateTime dt)
                 formatDateValue(cell, dt, outputValueFormat);
-            }
-            else {
+            else
                 cell.SetValue(cellValue);
-            }
         }
 
-        private void formatDateValue(IXLCell cell, DateTime cellValue, String outputValueFormat) {
+        private void formatDateValue(IXLCell cell, DateTime cellValue, string outputValueFormat) {
             // LocalDateTime dt = LocalDateTime.ofInstant(Instant.ofEpochMilli(cellValue.getTime()), ZoneId.of("UTC"));
             // Date utcDate = Date.from(dt.atZone(ZoneId.systemDefault()).toInstant());
             //

@@ -15,23 +15,19 @@ namespace DevIgnite.ReportBuilderLibrary {
         }
 
         public IDatasource CreateDatasource(DataProviderType dataProviderType, IDataProviderSettings settings) {
-            if (dataProviderType == DataProviderType.Mongo) {
-                return CreateMongoDataSource(settings as MongoDataProviderSettings);
-            }
+            if (dataProviderType == DataProviderType.Mongo) return CreateMongoDataSource(settings as MongoDataProviderSettings);
 
             throw new FormatException($"DataProvider \"{dataProviderType}\" not supported");
         }
-        
+
         public IReportBuilder CreateReportBuilder(ReportBuilderType reportBuilderType) {
-            if (reportBuilderType == ReportBuilderType.XLSX) {
-                return new ExcelUsingRawXmlBuilder();
-            }
+            if (reportBuilderType == ReportBuilderType.XLSX) return new ExcelUsingRawXmlBuilder();
 
             throw new FormatException($"ReportBuilderType \"{reportBuilderType}\" not supported");
         }
 
         private MongoDatasource CreateMongoDataSource(MongoDataProviderSettings settings) {
-            return new (_serviceProvider.GetService<MongoClient>().GetDatabase(settings.DatabaseName).GetCollection<BsonDocument>(settings.CollectionName));
+            return new(_serviceProvider.GetService<MongoClient>().GetDatabase(settings.DatabaseName).GetCollection<BsonDocument>(settings.CollectionName));
         }
     }
 
