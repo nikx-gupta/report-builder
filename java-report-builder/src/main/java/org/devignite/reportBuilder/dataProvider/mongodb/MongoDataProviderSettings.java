@@ -8,4 +8,5 @@ import org.devignite.reportBuilder.dataProvider.abstractions.DataProviderSetting
 @EqualsAndHashCode(callSuper = false)
 public class MongoDataProviderSettings extends DataProviderSettings {
     private String sourceCollectionName;
+    private String queryJson;
 }

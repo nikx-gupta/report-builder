@@ -1,4 +1,4 @@
-package org.devignite.reportBuilder;
+package org.devignite.reportBuilder.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.devignite.reportBuilder.model.ReportMetadata;

@@ -40,7 +40,7 @@ public class ReportService {
         outputFile.createNewFile();
         try (FileOutputStream outputStream = new FileOutputStream(outputFile)) {
             componentFactory.createReportBuilder(reportMetadata)
-                    .generateReport(dataSource.loadData(), reportMetadata, outputStream);
+                    .generateReport(dataSource.loadDataIterator(), reportMetadata, outputStream);
         } catch (Exception ex) {
             log.error(ex.getMessage());
         }

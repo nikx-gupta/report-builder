@@ -1,5 +1,6 @@
 package org.devignite.reportBuilder;
 
+import org.devignite.reportBuilder.controller.ReportMetadataController;
 import org.devignite.reportBuilder.model.ReportMetadata;
 import org.devignite.reportBuilder.repository.ReportManifestRepository;
 import org.devignite.reportBuilder.services.ReportMetadataService;
@@ -13,7 +14,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.InvalidPropertyException;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;

@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.ZipEntry;
@@ -42,7 +43,7 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
         xmlFileName = helper.getUniqueFileNameWithGuid("xml");
     }
 
-    public void generateReport(IDataSet dataSet, ReportMetadata reportMetadata, OutputStream outputStream) {
+    public void generateReport(Iterator<IDataRow> dataSet, ReportMetadata reportMetadata, OutputStream outputStream) {
         try {
             headerSet = new BuilderHelper().getHeaderSet(reportMetadata);
 
@@ -56,7 +57,7 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
     }
 
     @SneakyThrows
-    private void writeXmlDataFile(IDataSet dataSet, ReportMetadata reportMetadata) {
+    private void writeXmlDataFile(Iterator<IDataRow> dataSet, ReportMetadata reportMetadata) {
         File tmpFile = new File(xmlFileName);
         Writer fw = new FileWriter(tmpFile, StandardCharsets.UTF_8);
         SpreadsheetWriter writer = new SpreadsheetWriter(fw);
@@ -64,13 +65,13 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
         fw.close();
     }
 
-    private void writeSheet(SpreadsheetWriter writer, IDataSet dataSet, ReportMetadata reportMetadata) throws IOException {
+    private void writeSheet(SpreadsheetWriter writer, Iterator<IDataRow> dataSet, ReportMetadata reportMetadata) throws IOException {
         writer.beginSheet();
         writeSheetXml(dataSet, reportMetadata, writer);
         writer.endSheet();
     }
 
-    private void writeSheetXml(IDataSet dataSet, ReportMetadata reportMetadata, SpreadsheetWriter writer) throws IOException {
+    private void writeSheetXml(Iterator<IDataRow> dataSet, ReportMetadata reportMetadata, SpreadsheetWriter writer) throws IOException {
 
         // Write Header
         writer.insertRow(0);
@@ -81,10 +82,10 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
         writer.endRow();
 
         // Write Rows
-        Integer rowCount = dataSet.getRowCount();
-        for (int i = 0; i < rowCount; i++) {
-            IDataRow dataRow = dataSet.getRow(i);
-            writer.insertRow(i + 1);
+        AtomicInteger rowIndex = new AtomicInteger(1);
+        while(dataSet.hasNext()){
+            IDataRow dataRow = dataSet.next();
+            writer.insertRow(rowIndex.getAndIncrement());
             AtomicInteger dataCellIndex = new AtomicInteger(0);
             headerSet.forEach((fieldName, curColFormat) -> {
                 if (curColFormat != null) {
