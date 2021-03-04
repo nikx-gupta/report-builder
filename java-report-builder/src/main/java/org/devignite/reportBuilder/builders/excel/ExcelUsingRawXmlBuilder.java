@@ -115,6 +115,7 @@ public class ExcelUsingRawXmlBuilder implements IReportBuilder {
         LocalDateTime dt = LocalDateTime.ofInstant(Instant.ofEpochMilli(cellValue.getTime()), ZoneId.of("UTC"));
         Date utcDate = Date.from(dt.atZone(ZoneId.systemDefault()).toInstant());
 
+
         if (outputValueFormat == null) {
             // apply default format
             writer.createCell(cellIndex, utcDate, styleWorkbook.getStyleIndex(FormatConstants.FORMAT_DEFAULT_DATE_KEY));

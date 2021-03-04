@@ -29,13 +29,6 @@
       "order": 0,
       "columnStyle": null,
       "outputValueFormat": null
-    },
-    {
-      "sourceFieldName": "cities.city",
-      "outputName": "City",
-      "order": 0,
-      "columnStyle": null,
-      "outputValueFormat": null
     }
   ],
   "headerStyle": {
